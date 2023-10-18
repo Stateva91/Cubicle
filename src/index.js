@@ -16,7 +16,7 @@ const routes=require('./routes');
 dbConnect()
 .then(()=> console.log('DB Connected successfully'))
 .catch(err=>
-    console.log('DB error: ', err.message));
+console.log('DB error: ', err.message));
 
 expressConfig(app);
 handlebarsConfig(app);
