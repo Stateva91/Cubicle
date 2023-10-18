@@ -1,1 +1,3 @@
-exports.create=(accessoryData)=> console.log(accessoryData);
+const Accessory = require('../models/accessory');
+
+exports.create = (accessoryData) => Accessory.create(accessoryData);
