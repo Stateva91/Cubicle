@@ -1,33 +1,42 @@
-const Cube=require('../models/Cube');
-const uniqid=require('uniqid');
-const cubes=[];
-//const db = require('../db.json');
+const Cube = require('../models/Cube');
 
-exports.getAll= async ( search, from, to)=> {
-    let result=await Cube.find().lean();
+exports.getAll = async (search, from, to) => {
+    let result = await Cube.find().lean();
 
-//TODo: use mongoose to filter in the db
-    if(search){
-        result=result.filter(cube=> cube.name.toLowerCase().includes(search.toLowerCase()))
+    // TODO: use mongoose to filter in the db
+    if (search) {
+        result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));
     }
-    if(from){
-     result=result.filter(cube=>cube.difficultyLevel >=Number(from));
+
+    if (from) {
+        result = result.filter(cube => cube.difficultyLevel >= Number(from));
     }
-    if(to){
-        result=result.filter(cube=>cube.difficultyLevel <=Number(to));
+
+    if (to) {
+        result = result.filter(cube => cube.difficultyLevel <= Number(to));
     }
+
     return result;
 };
 
-exports.getOne=(cubeId)=> Cube.findById(cubeId);
+exports.getOne = (cubeId) => Cube.findById(cubeId);
+exports.getOneWithAccessories = (cubeId) => this.getOne(cubeId).populate('accessories');
 
-exports.create = async (cubeData)=>{
-//    const newCube={
-//     id: uniqid(),
-//     ...cubeData,
-//    };
-const cube=new Cube(cubeData);
-await cube.save();
+exports.create = (cubeData) => {
+    const cube = new Cube(cubeData);
 
- return cube.save();
+    return cube.save();
+};
+
+exports.update = (cubeId, cubeData) => Cube.findByIdAndUpdate(cubeId, cubeData);
+
+exports.delete = (cubeId) => Cube.findByIdAndDelete(cubeId);
+
+exports.attachAccessory = async (cubeId, accessoryId) => {
+    // return Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } });
+
+    const cube = await Cube.findById(cubeId);
+    cube.accessories.push(accessoryId);
+
+    return cube.save();
 };

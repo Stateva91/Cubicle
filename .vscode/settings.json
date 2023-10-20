@@ -1,5 +1,34 @@
 {
     "cSpell.words": [
-        "uniqid"
+        "anymatch",
+        "bitfield",
+        "bson",
+        "depd",
+        "eastasianwidth",
+        "extglob",
+        "finalhandler",
+        "fullwidth",
+        "ipaddr",
+        "isexe",
+        "jackspeak",
+        "minipass",
+        "missmatch",
+        "mpath",
+        "mquery",
+        "parseurl",
+        "Passsword",
+        "proto",
+        "pstree",
+        "readdirp",
+        "remy",
+        "toidentifier",
+        "typer",
+        "undefsafe",
+        "undici",
+        "uniqid",
+        "webidl",
+        "whatwg",
+        "wordwrap",
+        "yallist"
     ]
 }
